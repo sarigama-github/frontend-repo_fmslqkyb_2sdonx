@@ -1,11 +1,11 @@
 import React from 'react'
 import Spline from '@splinetool/react-spline'
-import { Check, Shield, Sparkles, Gauge, Users, CreditCard, ArrowRight, Zap, CalendarClock } from 'lucide-react'
+import Navbar from './components/Navbar'
+import { Check, Shield, Gauge, Users, CreditCard, ArrowRight, CalendarClock, Lock, Globe2, LineChart } from 'lucide-react'
 
-function Badge({ children }) {
+function Pill({ children }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur">
-      <Sparkles className="h-3.5 w-3.5 text-cyan-300" />
+    <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/60 bg-amber-100/60 px-3 py-1 text-xs font-medium text-amber-900">
       {children}
     </span>
   )
@@ -13,11 +13,11 @@ function Badge({ children }) {
 
 function Feature({ icon: Icon, title, desc }) {
   return (
-    <div className="group rounded-2xl border border-slate-200/60 bg-white/70 p-6 shadow-sm ring-1 ring-white/40 backdrop-blur transition-all hover:shadow-xl hover:-translate-y-1">
-      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/20">
+    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 text-amber-900">
         <Icon className="h-5 w-5" />
       </div>
-      <h3 className="text-slate-900 font-semibold mb-2">{title}</h3>
+      <h3 className="text-slate-900 font-semibold mb-1">{title}</h3>
       <p className="text-slate-600 text-sm leading-6">{desc}</p>
     </div>
   )
@@ -25,9 +25,9 @@ function Feature({ icon: Icon, title, desc }) {
 
 function Stat({ value, label }) {
   return (
-    <div className="rounded-2xl border border-white/30 bg-white/10 p-6 text-white/90 backdrop-blur">
-      <div className="text-3xl font-semibold tracking-tight">{value}</div>
-      <div className="text-sm text-white/70 mt-1">{label}</div>
+    <div className="rounded-xl border border-slate-200 bg-white p-5">
+      <div className="text-2xl font-semibold tracking-tight text-slate-900">{value}</div>
+      <div className="text-sm text-slate-600 mt-1">{label}</div>
     </div>
   )
 }
@@ -36,105 +36,86 @@ export default function App() {
   const features = [
     {
       icon: Gauge,
-      title: 'Automated Payroll',
-      desc: 'Run payroll in minutes with rules for taxes, benefits, reimbursements, and statutory compliance across regions.'
+      title: 'Automated payroll',
+      desc: 'Run compliant payroll in minutes with rules for taxes, benefits, reimbursements and approvals.'
     },
     {
       icon: Users,
-      title: 'Unified HRMS',
-      desc: 'Onboarding to offboarding in one place — attendance, leaves, assets, and document vault with e-signatures.'
+      title: 'People & HRMS',
+      desc: 'Onboarding to offboarding in one place — time off, attendance, documents and assets.'
     },
     {
       icon: CreditCard,
-      title: 'Global Payouts',
-      desc: 'Pay teams in 140+ countries with FX optimization, split payments, and transparent fees.'
+      title: 'Global payouts',
+      desc: 'Pay teams in 140+ countries with transparent FX and unified controls.'
     },
     {
       icon: Shield,
-      title: 'Enterprise-grade Security',
-      desc: 'SOC 2 Type II, GDPR, and role-based access. Fine-grained approvals with complete audit trails.'
+      title: 'Compliance by default',
+      desc: 'SOC 2 Type II, GDPR and role-based access with full audit trails.'
     },
+    {
+      icon: Globe2,
+      title: 'Local to global',
+      desc: 'Regional rules, localized payslips and statutory filings out of the box.'
+    },
+    {
+      icon: LineChart,
+      title: 'Insights that act',
+      desc: 'Spot anomalies, forecast costs and surface trends automatically.'
+    }
   ]
 
   const checklist = [
     'Single-click payroll run',
-    'AI anomaly detection & insights',
-    'Attendance via web, mobile, kiosk',
-    'Time-off policies, carryover & accruals',
-    'Benefits, bonuses, and reimbursements',
+    'Time off & attendance',
+    'E-sign docs & letters',
+    'Multi-country compliance',
+    'Benefits & reimbursements',
     'Built-in statutory reports'
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      {/* Top gradient glow */}
-      <div className="pointer-events-none absolute inset-x-0 top-[-10rem] -z-0 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
-        <div className="relative left-1/2 aspect-[1155/678] w-[36rem] -translate-x-1/2 bg-gradient-to-tr from-cyan-400 to-indigo-600 opacity-30 sm:w-[72rem]" style={{ clipPath: 'polygon(74% 44%, 100% 67%, 91% 100%, 57% 92%, 33% 73%, 0 78%, 18% 41%, 48% 0, 78% 27%)' }} />
-      </div>
-
-      {/* Navbar */}
-      <header className="relative z-20">
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-500 via-cyan-400 to-indigo-500 p-[2px] shadow-md">
-              <div className="h-full w-full rounded-[10px] bg-white/90 backdrop-blur"></div>
-            </div>
-            <span className="text-xl font-semibold tracking-tight bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">FluxHR</span>
-          </a>
-
-          <div className="hidden md:flex items-center gap-8 text-sm">
-            <a href="#product" className="text-slate-600 hover:text-slate-900 transition-colors">Product</a>
-            <a href="#payroll" className="text-slate-600 hover:text-slate-900 transition-colors">Payroll</a>
-            <a href="#hrms" className="text-slate-600 hover:text-slate-900 transition-colors">HRMS</a>
-            <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</a>
-            <a href="#resources" className="text-slate-600 hover:text-slate-900 transition-colors">Resources</a>
-          </div>
-
-          <div className="hidden md:flex items-center gap-3">
-            <a href="#login" className="text-slate-700 hover:text-slate-900 px-3 py-2 rounded-lg">Sign in</a>
-            <a href="#get-started" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 text-sm font-semibold shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 transition-all">
-              <Zap className="h-4 w-4" />
-              Get started
-            </a>
-          </div>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-white text-slate-900">
+      <Navbar />
 
       {/* Hero */}
-      <section className="relative">
-        <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-4 sm:px-6 lg:px-8 pt-8 pb-16 lg:pt-16">
+      <section className="relative overflow-hidden">
+        {/* Soft brand blob */}
+        <div className="pointer-events-none absolute -top-24 right-[-10%] h-80 w-80 rounded-full bg-amber-200/50 blur-3xl" />
+        <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-16">
           <div className="relative z-10 flex flex-col justify-center">
-            <div className="mb-5">
-              <Badge>HR & Payroll reimagined for 2026</Badge>
+            <div className="mb-4">
+              <Pill>HR for people. Payroll that just works.</Pill>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900 leading-[1.05]">
-              HR & Payroll that runs itself
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05]">
+              Everything you need to hire, pay and care for your team
             </h1>
             <p className="mt-5 text-lg text-slate-600 max-w-xl">
-              A modern HRMS with automated payroll, global payouts, and AI insights — built for distributed teams and compliance-first organizations.
+              A clean, modern HR platform with automated payroll, time off, attendance and insights — built for growing companies.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="#get-started" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-3 text-sm font-semibold shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40">
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <a href="#get-started" className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 text-slate-900 px-6 py-3 text-sm font-semibold shadow-sm hover:bg-amber-300 transition-colors">
                 Start free trial
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#demo" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50">
+              <a href="#demo" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50">
                 Book a demo
                 <CalendarClock className="h-4 w-4" />
               </a>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
-              <Stat value="99.9%" label="Uptime SLA" />
-              <Stat value="140+" label="Countries supported" />
-              <Stat value="48h" label="Avg. payroll closure" />
+            <div className="mt-8 grid grid-cols-3 gap-3 text-sm">
+              <Stat value="99.9%" label="Uptime" />
+              <Stat value="140+" label="Countries" />
+              <Stat value="48h" label="Avg. closure" />
             </div>
 
             <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {checklist.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-slate-700">
-                  <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white shadow-sm">
+                <li key={item} className="flex items-start gap-3 text-slate-800">
+                  <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-white">
                     <Check className="h-3.5 w-3.5" />
                   </span>
                   <span className="text-sm">{item}</span>
@@ -144,22 +125,22 @@ export default function App() {
           </div>
 
           {/* Spline 3D area */}
-          <div className="relative min-h-[420px] lg:min-h-[520px] xl:min-h-[600px]">
-            <div className="absolute inset-0 rounded-[24px] border border-white/30 bg-gradient-to-br from-white/40 to-white/10 shadow-xl backdrop-blur-xl overflow-hidden">
+          <div className="relative min-h-[440px] lg:min-h-[520px] xl:min-h-[600px]">
+            <div className="absolute inset-0 rounded-[20px] border border-slate-200 bg-white shadow-xl overflow-hidden">
               <Spline scene="https://prod.spline.design/qQUip0dJPqrrPryE/scene.splinecode" style={{ width: '100%', height: '100%' }} />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-blue-600/10 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-amber-200/20 via-transparent to-transparent" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Logos */}
-      <section className="py-10">
+      <section className="py-10 border-t border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-center text-xs uppercase tracking-wider text-slate-500 mb-6">Trusted by fast-growing teams</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 opacity-70">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 opacity-80">
             {['Nova', 'Aperture', 'Helix', 'Quanta', 'Nimble', 'Vertex'].map((brand) => (
-              <div key={brand} className="mx-auto w-28 h-10 rounded-md bg-slate-100/70 border border-slate-200/80 flex items-center justify-center text-slate-500 text-sm">
+              <div key={brand} className="mx-auto w-28 h-10 rounded-md bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 text-sm">
                 {brand}
               </div>
             ))}
@@ -168,9 +149,9 @@ export default function App() {
       </section>
 
       {/* Product highlights */}
-      <section id="product" className="py-6 sm:py-14">
+      <section id="product" className="py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((f) => (
               <Feature key={f.title} icon={f.icon} title={f.title} desc={f.desc} />
             ))}
@@ -178,21 +159,59 @@ export default function App() {
         </div>
       </section>
 
+      {/* Benefit strip */}
+      <section className="py-10 bg-amber-50 border-y border-amber-200/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3 text-slate-900">
+              <Lock className="h-5 w-5" />
+              <span className="text-sm font-medium">SOC 2 Type II & GDPR compliant</span>
+            </div>
+            <div className="flex items-center gap-3 text-slate-900">
+              <Globe2 className="h-5 w-5" />
+              <span className="text-sm font-medium">Multi-country, multi-currency</span>
+            </div>
+            <div className="flex items-center gap-3 text-slate-900">
+              <LineChart className="h-5 w-5" />
+              <span className="text-sm font-medium">Real-time insights & alerts</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial */}
+      <section className="py-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-12 shadow-md">
+            <p className="text-xl leading-relaxed text-slate-800">
+              “FluxHR makes payroll invisible. Our team spends less time on admin and more time building. The switch was effortless and the support is world‑class.”
+            </p>
+            <div className="mt-6 flex items-center gap-4">
+              <div className="h-10 w-10 rounded-full bg-slate-200" />
+              <div>
+                <div className="font-semibold text-slate-900">Ava Chen</div>
+                <div className="text-sm text-slate-600">VP Operations, Nova Labs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section id="pricing" className="relative py-16">
+      <section id="pricing" className="py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 sm:p-12 shadow-xl">
-            <div className="absolute right-[-10%] top-[-30%] h-72 w-72 rounded-full bg-gradient-to-br from-cyan-400/30 to-indigo-600/30 blur-3xl" />
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 shadow-xl">
+            <div className="absolute right-[-10%] top-[-20%] h-72 w-72 rounded-full bg-amber-200/60 blur-3xl" />
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
-                  Payroll at startup speed
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  Bring clarity to your people ops
                 </h2>
                 <p className="mt-3 text-slate-600">
                   Get started in minutes. No setup fees. Cancel anytime.
                 </p>
 
-                <div className="mt-5 flex flex-wrap gap-3 text-sm text-slate-700">
+                <div className="mt-5 flex flex-wrap gap-3 text-sm text-slate-800">
                   {['Free migration', 'White-glove onboarding', '24/7 support'].map((b) => (
                     <span key={b} className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1">
                       <Check className="h-3.5 w-3.5 text-emerald-600" /> {b}
@@ -201,11 +220,11 @@ export default function App() {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 sm:justify-end">
-                <a href="#get-started" className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 text-sm font-semibold shadow-lg shadow-blue-600/30 hover:shadow-blue-600/40">
+                <a href="#get-started" className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 text-slate-900 px-6 py-3 text-sm font-semibold shadow-sm hover:bg-amber-300 transition-colors">
                   Start free trial
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                <a href="#demo" className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50">
+                <a href="#demo" className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50">
                   Book a demo
                 </a>
               </div>
@@ -215,11 +234,11 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-10">
+      <footer className="py-10 border-t border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-slate-500 text-sm">© {new Date().getFullYear()} FluxHR — HRMS & Payroll for modern teams.</p>
-            <div className="flex items-center gap-4 text-sm text-slate-600">
+            <p className="text-slate-600 text-sm">© {new Date().getFullYear()} FluxHR — HRMS & Payroll for modern teams.</p>
+            <div className="flex items-center gap-4 text-sm text-slate-700">
               <a href="#privacy" className="hover:text-slate-900">Privacy</a>
               <a href="#terms" className="hover:text-slate-900">Terms</a>
               <a href="/test" className="hover:text-slate-900">System check</a>
